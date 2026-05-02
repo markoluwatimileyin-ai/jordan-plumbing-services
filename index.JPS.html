@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<title>Jordan Plumbing Services</title>
+<style>
+:root {
+  --dark-blue: #0A192F;
+  --dark-teal: #003566;
+  --cyan: #00B4D8;
+  --aqua: #48CAE4;
+  --white: #F8F9FA;
+  --gold: #FFD166;
+  --green: #25D366;
+  --transition: all 0.3s ease;
+}
+
+* { box-sizing: border-box; margin:0; padding:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background: var(--dark-blue); color: var(--white); line-height: 1.6; scroll-behavior: smooth; }
+a { text-decoration:none; color:inherit; }
+button { cursor:pointer; transition: var(--transition); }
+img { width: 100%; height: 200px; object-fit: cover; border-radius:8px; }
+
+/* HEADER */
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 32px; background-color:var(--dark-teal);
+  position:sticky; top:0; z-index:100;
+}
+header h1 { font-size:1.5rem; font-weight:bold; color: var(--gold); }
+nav a { margin-left:20px; font-weight:600; font-size:0.95rem; }
+nav a:hover { color: var(--gold); }
+@media(max-width:768px){ 
+  header { flex-direction:column; text-align:center; gap:10px; } 
+  nav a { margin: 0 8px; font-size:0.85rem; }
+}
+
+/* HERO */
+.hero {
+  display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+  min-height:90vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('https://plus.unsplash.com/premium_photo-1664299069577-11579b487e6c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBsdW1iaW5nJTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D') center/cover;
+  padding:32px;
+  opacity:0; transform: translateY(30px); transition: all 1s ease;
+}
+.hero.show { opacity:1; transform:translateY(0); }
+.hero h2 { font-size:3rem; margin-bottom:12px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+.hero .subtitle { font-size:1.2rem; margin-bottom:8px; color: var(--aqua); }
+.hero .location { font-size:1rem; margin-bottom:32px; color: #ccc; }
+.hero-buttons { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+.btn-call {
+  background: var(--gold); border:none; padding:14px 28px;
+  border-radius:8px; font-weight:bold; color: var(--dark-blue);
+  font-size:1rem; display:flex; align-items:center; gap:8px;
+}
+.btn-call:hover { background: #ffc107; transform: scale(1.05); }
+.btn-whatsapp {
+  background: var(--green); border:none; padding:14px 28px;
+  border-radius:8px; font-weight:bold; color: #fff;
+  font-size:1rem; display:flex; align-items:center; gap:8px;
+}
+.btn-whatsapp:hover { background: #1ebe57; transform: scale(1.05); }
+
+/* TRUST SECTION */
+.trust-section {
+  background: var(--dark-teal);
+  padding: 40px 32px;
+  text-align: center;
+}
+.trust-grid {
+  display: flex; flex-wrap:wrap; justify-content:center; gap:24px; margin-top:24px;
+}
+.trust-item {
+  display:flex; align-items:center; gap:10px;
+  background: rgba(255,255,255,0.05);
+  padding: 14px 24px; border-radius:8px;
+  font-size:1rem; font-weight:600;
+}
+.trust-item i { color: var(--gold); font-size:1.3rem; }
+
+/* SECTIONS */
+section { padding:64px 32px; opacity:0; transform:translateY(30px); transition: all 1s ease; }
+section.show { opacity:1; transform:translateY(0); }
+h2 { text-align:center; color: var(--cyan); margin-bottom:48px; font-size:2rem; }
+
+/* GRID CARDS */
+.grid { display:grid; gap:32px; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); }
+.card { background-color:var(--dark-teal); padding:16px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.3); transition:transform 0.3s, box-shadow 0.3s; }
+.card:hover { transform:translateY(-8px) scale(1.03); box-shadow:0 8px 16px rgba(0,0,0,0.5); }
+.card h3 { color: var(--gold); margin: 12px 0 8px; font-size:1.2rem; }
+.card p { font-size:0.95rem; margin-bottom:8px; color: #ffffff !important; opacity:1 !important; }
+.card .price { font-weight:bold; color: var(--aqua); margin-bottom:12px; font-size:1rem; }
+.card button { background-color: var(--cyan); border:none; padding:8px 16px; border-radius:6px; color: var(--dark-blue); font-weight:bold; }
+.card button:hover { background-color: var(--gold); }
+
+/* TESTIMONIALS */
+.testimonials { background: var(--dark-teal); padding:64px 32px; }
+.testimonials-grid { display:grid; gap:24px; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); margin-top:32px; }
+.testimonial-card {
+  background: rgba(255,255,255,0.05); padding:24px; border-radius:12px;
+  border-left: 4px solid var(--gold);
+}
+.testimonial-card p { font-style:italic; margin-bottom:12px; color:#ddd; }
+.testimonial-card span { color: var(--gold); font-weight:bold; font-size:0.9rem; }
+.stars { color: var(--gold); margin-bottom:8px; }
+
+/* BOOKING FORM */
+form { display:flex; flex-direction:column; gap:16px; max-width:600px; margin:0 auto; }
+form input, form textarea, form select { padding:12px; border-radius:8px; border:none; font-size:1rem; background:#1a2a4a; color:#fff; }
+form input::placeholder, form textarea::placeholder { color:#aaa; }
+form button { width:fit-content; padding:12px 28px; border-radius:8px; background-color: var(--aqua); border:none; font-weight:bold; color: var(--dark-blue); font-size:1rem; }
+form button:hover { background-color: var(--gold); }
+
+/* CONTACT SECTION */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap:48px; max-width:900px; margin:0 auto;
+}
+.contact-info p { margin-bottom:16px; font-size:1rem; display:flex; align-items:center; gap:10px; }
+.contact-info i { color: var(--gold); font-size:1.2rem; width:20px; }
+.whatsapp-big {
+  display:inline-flex; align-items:center; gap:10px;
+  background: var(--green); padding:14px 28px; border-radius:8px;
+  font-weight:bold; color:#fff; font-size:1rem; margin-top:16px;
+}
+.whatsapp-big:hover { background:#1ebe57; transform:scale(1.05); transition: var(--transition); }
+@media(max-width:768px){ .contact-grid { grid-template-columns:1fr; } }
+
+/* CTA SECTION */
+.cta-section {
+  background: linear-gradient(135deg, var(--dark-teal), #001f4d);
+  padding:64px 32px; text-align:center;
+}
+.cta-section h2 { color: var(--gold); margin-bottom:16px; }
+.cta-section p { font-size:1.1rem; margin-bottom:32px; color:#ccc; }
+.cta-buttons { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+/* FOOTER */
+footer {
+  background: #060f1e; padding:40px 32px; text-align:center;
+}
+.footer-icons { display:flex; gap:20px; justify-content:center; margin-bottom:24px; }
+.footer-icons a { font-size:1.8rem; color: var(--aqua); transition: var(--transition); }
+.footer-icons a:hover { color: var(--gold); transform:scale(1.2); }
+.footer-copy { font-size:0.9rem; opacity:0.6; }
+
+/* WHATSAPP FLOAT */
+.whatsapp-float {
+  position:fixed; bottom:24px; right:24px; z-index:999;
+  background: var(--green); color:#fff; border-radius:50%;
+  width:60px; height:60px; display:flex; align-items:center; justify-content:center;
+  font-size:1.8rem; box-shadow:0 4px 12px rgba(0,0,0,0.4);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* SCROLL ANIMATION */
+@keyframes fadeUp {
+  0% { opacity:0; transform:translateY(30px); }
+  100% { opacity:1; transform:translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 1s forwards; opacity:0; }
+.animate-fade-up.delay-200 { animation-delay:0.2s; }
+.animate-fade-up.delay-400 { animation-delay:0.4s; }
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/2348140016532" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- HEADER -->
+<header>
+  <h1>Jordan Plumbing Services</h1>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#booking">Book</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <h2>Fast & Reliable Plumbing in Ile-Ife</h2>
+  <p class="subtitle">We fix leaks, install pipes, WC, water heaters & more.</p>
+  <p class="location"><i class="fas fa-map-marker-alt"></i> Jordan Workshop, OAU Campus, Osun State</p>
+  <div class="hero-buttons">
+    <a href="tel:+2348140016532" class="btn-call">
+      <i class="fas fa-phone"></i> Call Now: +234 814 001 6532
+    </a>
+    <a href="https://wa.me/2348140016532" target="_blank" class="btn-whatsapp">
+      <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- TRUST SECTION -->
+<div class="trust-section">
+  <div class="trust-grid">
+    <div class="trust-item"><i class="fas fa-clock"></i> Available 24/7</div>
+    <div class="trust-item"><i class="fas fa-bolt"></i> Fast Response Time</div>
+    <div class="trust-item"><i class="fas fa-tag"></i> Affordable Pricing</div>
+    <div class="trust-item"><i class="fas fa-hard-hat"></i> Experienced Technicians</div>
+    <div class="trust-item"><i class="fas fa-home"></i> Served 100+ Homes</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="grid" id="services-grid"></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <h2 style="text-align:center; color:var(--cyan); font-size:2rem;">What Our Customers Say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Fast and reliable, fixed my leaking pipe the same day I called. Very professional!"</p>
+      <span>— Adebayo T., OAU Campus</span>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Installed my water heater perfectly. Affordable and neat work. Highly recommended!"</p>
+      <span>— Funke A., Ile-Ife</span>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"They responded quickly and fixed my WC same day. Great service at a fair price."</p>
+      <span>— Emeka O., Osun State</span>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING -->
+<section id="booking">
+  <h2>Request a Service</h2>
+  <p style="text-align:center; margin-bottom:32px; color:#aaa;">Fill in your details and we'll contact you shortly</p>
+  <form id="booking-form">
+    <input type="text" placeholder="Your Name" required id="name">
+    <input type="tel" placeholder="Phone Number (we'll call you)" required id="phone">
+    <select id="serviceSelect" required><option value="">What do you need help with?</option></select>
+    <textarea placeholder="Briefly describe the problem" rows="3" id="problem"></textarea>
+    <button type="submit"><i class="fas fa-paper-plane"></i> Send Request</button>
+  </form>
+</section>
+
+<!-- CTA SECTION -->
+<div class="cta-section">
+  <h2>Need a Plumber Urgently?</h2>
+  <p>Don't wait — call us now or send a WhatsApp message and we'll respond fast!</p>
+  <div class="cta-buttons">
+    <a href="tel:+2348140016532" class="btn-call">
+      <i class="fas fa-phone"></i> Call Now
+    </a>
+    <a href="https://wa.me/2348140016532" target="_blank" class="btn-whatsapp">
+      <i class="fab fa-whatsapp"></i> WhatsApp Us
+    </a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p><i class="fas fa-phone"></i> +234 814 001 6532</p>
+      <p><i class="fas fa-envelope"></i> support@jlplumbingservices.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> Jordan Workshop, OAU Campus, Ile-Ife, Osun State</p>
+      <p><i class="fas fa-clock"></i> Mon–Fri, 9:00 AM – 5:00 PM (WAT)</p>
+      <a href="https://wa.me/2348140016532" target="_blank" class="whatsapp-big">
+        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+    </div>
+    <form id="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <textarea placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-icons animate-fade-up delay-200">
+    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/2348140016532" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Jordan Plumbing Services. All rights reserved.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
