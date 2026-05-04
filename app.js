@@ -1,4 +1,4 @@
-const API = 'http://localhost:5000/api';
+const API = 'https://jordan-plumbing-services-production.up.railway.app/api';
 
 /* SERVICES DATA */
 const services = [
